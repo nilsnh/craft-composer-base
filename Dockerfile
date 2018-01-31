@@ -14,7 +14,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
   echo '' | pecl install redis && docker-php-ext-enable redis && \
   echo '' | pecl install imagick && docker-php-ext-enable imagick
 
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
 
 ADD ./src/install.sh /install.sh
 RUN chmod +x /install.sh
