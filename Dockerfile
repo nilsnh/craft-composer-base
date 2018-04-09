@@ -11,7 +11,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y git zip 
 
 # Install composer and the php-extensions themselves.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-  docker-php-ext-install gd mcrypt pdo_mysql && \
+  docker-php-ext-install gd mcrypt pdo_mysql zip && \
   echo '' | pecl install redis && docker-php-ext-enable redis && \
   echo '' | pecl install imagick && docker-php-ext-enable imagick
 
