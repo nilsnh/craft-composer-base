@@ -7,7 +7,7 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 # Install dependencies required by php-extensions
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y git zip \
-  libpng-dev libmcrypt-dev mysql-client libmagickwand-dev mysqltuner libmemcached-dev
+  libpng-dev libmcrypt-dev mysql-client libmagickwand-dev mysqltuner libmemcached-dev libicu-dev
 
 # Install composer and the php-extensions themselves.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
