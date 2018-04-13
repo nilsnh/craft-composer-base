@@ -7,13 +7,14 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 # Install dependencies required by php-extensions
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y git zip \
-  libpng-dev libmcrypt-dev mysql-client libmagickwand-dev mysqltuner
+  libpng-dev libmcrypt-dev mysql-client libmagickwand-dev mysqltuner libmemcached-dev
 
 # Install composer and the php-extensions themselves.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-  docker-php-ext-install gd mcrypt pdo_mysql zip && \
+  docker-php-ext-install gd mcrypt pdo_mysql zip intl && \
   echo '' | pecl install redis && docker-php-ext-enable redis && \
-  echo '' | pecl install imagick && docker-php-ext-enable imagick
+  echo '' | pecl install imagick && docker-php-ext-enable imagick && \
+  echo '' | pecl install memcached && docker-php-ext-enable memcached
 
 RUN a2enmod rewrite headers
 
