@@ -7,3 +7,9 @@ locally. When building the container installs PHP support for: gd, mcrypt, mysql
 enables mod_rewrite in Apache.
 
 This image builds on the [official docker php image](https://hub.docker.com/_/php/).
+
+## Simple testing
+
+1. Run `docker run -p 8080:80 --rm -it -v "$PWD/test":/var/www/html/public craft-test`
+2. Visit `localhost:8080` in your browser.
+3. Editing `test/index.php` will affect the output when refreshing the browser.
