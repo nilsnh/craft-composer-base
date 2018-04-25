@@ -21,4 +21,6 @@ RUN a2enmod rewrite headers
 ADD ./src/install.sh /install.sh
 RUN chmod +x /install.sh
 
+ADD ./src/php.ini /usr/local/etc/php/php.ini
+
 CMD ["/install.sh"]
